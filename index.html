@@ -2716,12 +2716,44 @@ async function sbOnLogin() {
   sbOnline = true;
   document.getElementById('login-overlay').style.display = 'none';
   sbUpdateIndicator();
-  await sbPullSettings(); // pull user's settings first
-  await sbPullTrades();   // cloud is ALWAYS truth — pull first
-  await sbMigrateLocal(); // then push only local trades not in cloud at all
+  await sbPullSettings(); // pull this user's settings
+  await sbPullTrades();   // pull this user's cloud trades — replaces local entirely
+  // Only migrate if this user has ZERO cloud trades (brand new account)
+  if (trades.length === 0) {
+    await sbMigrateLocal();
+  } else {
+    persist();
+  }
+  sbSubscribeRealtime(); // subscribe to real-time changes
   renderAll();
 }
 
+
+
+// ── REALTIME SYNC ──────────────────────────────────────
+let realtimeChannel = null;
+
+function sbSubscribeRealtime() {
+  if (!sb || !sbUser || realtimeChannel) return;
+  realtimeChannel = sb
+    .channel('trades-changes')
+    .on('postgres_changes',
+      { event: '*', schema: 'public', table: 'trades', filter: `user_id=eq.${sbUser.id}` },
+      async (payload) => {
+        // Re-pull all trades on any change
+        await sbPullTrades();
+        renderAll();
+      }
+    )
+    .subscribe();
+}
+
+function sbUnsubscribeRealtime() {
+  if (realtimeChannel) {
+    sb.removeChannel(realtimeChannel);
+    realtimeChannel = null;
+  }
+}
 
 // ── SETTINGS SYNC (cloud per-user) ────────────────────────────────────────
 async function sbPullSettings() {
@@ -2932,7 +2964,16 @@ async function sbBootCheck() {
   // Listen for auth changes
   sb.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_OUT') {
-      sbUser = null; sbOnline = false; sbUpdateIndicator();
+      sbUnsubscribeRealtime(); // stop listening for changes
+      sbUser = null; sbOnline = false;
+      // Clear local state so next user gets a clean slate
+      trades = [];
+      eodMarks = [];
+      cfg = { ...DEFAULT_SETTINGS };
+      persist();
+      persistCfg();
+      persistEOD();
+      sbUpdateIndicator();
       document.getElementById('login-overlay').style.display = 'flex';
     }
     if (event === 'PASSWORD_RECOVERY') {
