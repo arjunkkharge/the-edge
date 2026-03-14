@@ -1897,6 +1897,7 @@ function saveSettings() {
     risk2: parseFloat(document.getElementById('s-risk2').value) || 400,
   };
   persistCfg();
+  sbPushSettings(); // sync settings to cloud
   document.getElementById('sov').classList.remove('on');
   renderAll();
 }
@@ -2715,9 +2716,43 @@ async function sbOnLogin() {
   sbOnline = true;
   document.getElementById('login-overlay').style.display = 'none';
   sbUpdateIndicator();
+  await sbPullSettings(); // pull user's settings first
   await sbPullTrades();   // cloud is ALWAYS truth — pull first
   await sbMigrateLocal(); // then push only local trades not in cloud at all
   renderAll();
+}
+
+
+// ── SETTINGS SYNC (cloud per-user) ────────────────────────────────────────
+async function sbPullSettings() {
+  if (!sb || !sbUser) return;
+  try {
+    const { data, error } = await sb
+      .from('user_settings')
+      .select('settings')
+      .eq('user_id', sbUser.id)
+      .single();
+    if (error && error.code !== 'PGRST116') throw error; // PGRST116 = no rows
+    if (data?.settings) {
+      cfg = { ...DEFAULT_SETTINGS, ...data.settings };
+      persistCfg();
+    }
+  } catch(e) {
+    console.warn('sbPullSettings:', e.message);
+  }
+}
+
+async function sbPushSettings() {
+  if (!sb || !sbUser || !sbOnline) return;
+  try {
+    const { error } = await sb
+      .from('user_settings')
+      .upsert({ user_id: sbUser.id, settings: cfg, updated_at: new Date().toISOString() },
+               { onConflict: 'user_id' });
+    if (error) throw error;
+  } catch(e) {
+    console.warn('sbPushSettings:', e.message);
+  }
 }
 
 // ── SYNC STATUS INDICATOR ──────────────────────────────
