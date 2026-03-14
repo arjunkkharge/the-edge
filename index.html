@@ -1288,7 +1288,9 @@ function nav(id) {
   document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
   document.querySelectorAll('.topbar-ni').forEach(n => n.classList.remove('on'));
   if (typeof mobNavSync === 'function') mobNavSync(id);
-  document.getElementById('pg-' + id).classList.add('on');
+  const _pgEl = document.getElementById('pg-' + id);
+  if (!_pgEl) return; // safety: ignore invalid nav ids
+  _pgEl.classList.add('on');
   document.querySelectorAll('.ni').forEach(n => {
     if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) n.classList.add('on');
   });
@@ -1381,6 +1383,7 @@ function lockEOD() {
   const curBal = cfg.account + allPnl;
   eodMarks.push({ date: today, balance: curBal, time: new Date().toLocaleTimeString() });
   persistEOD();
+  sbPushSettings(); // sync EOD marks to cloud
   renderD();
   const btn = event.target;
   btn.textContent = 'Locked!';
@@ -1952,11 +1955,14 @@ function closeModal() { document.getElementById('tov').classList.remove('on'); }
 
 function saveTrade() {
   const gv = id => document.getElementById(id) ? document.getElementById(id).value : '';
-  const _pnlRaw = gv('f-pnl'); const pnl = (_pnlRaw !== '' && _pnlRaw !== null) ? (parseFloat(_pnlRaw) || 0) : 0;
+  const _resRaw = gv('f-res');
+  const _pnlRaw = gv('f-pnl');
+  // BE trades always have pnl=0 and rr=0 regardless of what's entered
+  const pnl = _resRaw === 'BE' ? 0 : ((_pnlRaw !== '' && _pnlRaw !== null) ? (parseFloat(_pnlRaw) || 0) : 0);
   const t = {
     id: editId || Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
     date: gv('f-date'), instrument: gv('f-ins'), dir: gv('f-dir'), result: gv('f-res'),
-    pnl, risk: parseFloat(gv('f-risk')) || 0, rr: parseFloat(gv('f-rr')) || 0, tradenum: gv('f-tn'),
+    pnl, risk: parseFloat(gv('f-risk')) || 0, rr: _resRaw === 'BE' ? 0 : (parseFloat(gv('f-rr')) || 0), tradenum: gv('f-tn'),
     session: gv('f-sess'), tod: gv('f-tod'), dow: gv('f-dow'), tit: gv('f-tit'),
     htf: gv('f-htf'), liq: gv('f-liq'), etf: gv('f-etf'), model: gv('f-mod'),
     entry: parseFloat(gv('f-en')) || 0, sl: parseFloat(gv('f-sl')) || 0,
@@ -2766,7 +2772,15 @@ async function sbPullSettings() {
       .single();
     if (error && error.code !== 'PGRST116') throw error; // PGRST116 = no rows
     if (data?.settings) {
-      cfg = { ...DEFAULT_SETTINGS, ...data.settings };
+      const { _eodMarks, ...cfgData } = data.settings;
+      cfg = { ...DEFAULT_SETTINGS, ...cfgData };
+      if (_eodMarks && Array.isArray(_eodMarks)) {
+        eodMarks = _eodMarks;
+        persistEOD();
+      }
+      if (data.settings._checklist) {
+        localStorage.setItem('lt_ck3', JSON.stringify(data.settings._checklist));
+      }
       persistCfg();
     }
   } catch(e) {
@@ -2779,7 +2793,7 @@ async function sbPushSettings() {
   try {
     const { error } = await sb
       .from('user_settings')
-      .upsert({ user_id: sbUser.id, settings: cfg, updated_at: new Date().toISOString() },
+      .upsert({ user_id: sbUser.id, settings: { ...cfg, _eodMarks: eodMarks, _checklist: JSON.parse(localStorage.getItem('lt_ck3') || '{}') }, updated_at: new Date().toISOString() },
                { onConflict: 'user_id' });
     if (error) throw error;
   } catch(e) {
