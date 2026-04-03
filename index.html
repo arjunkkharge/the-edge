@@ -15,7 +15,7 @@
 :root{--bg:#080808;--bg2:#0f0f0f;--bg3:#141414;--b1:#1e1e1e;--b2:#2a2a2a;--b3:#363636;--green:#00e676;--green2:#00c853;--glow:rgba(0,230,118,.12);--red:#ff4560;--gold:#ffd740;--blue:#448aff;--purple:#b388ff;--t1:#fff;--t2:#ccc;--t3:#888;--t4:#555;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);color:var(--t2);font-family:'Inter',sans-serif;font-size:14px;display:flex;min-height:100vh;}
-.sidebar{width:220px;background:var(--bg2);border-right:1px solid var(--b2);display:flex;flex-direction:column;position:fixed;inset:0 auto 0 0;z-index:100;}
+.sidebar{width:220px;background:var(--bg2);border-right:1px solid var(--b1);display:flex;flex-direction:column;position:fixed;inset:0 auto 0 0;z-index:100;}
 .logo{padding:22px 20px 18px;border-bottom:1px solid var(--b1);}
 .logo h1{font-size:17px;font-weight:700;color:#fff;}.logo h1 span{color:var(--green);}
 .logo p{font-family:'DM Mono',monospace;font-size:9px;color:var(--t4);letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;}
@@ -34,7 +34,7 @@ body{background:var(--bg);color:var(--t2);font-family:'Inter',sans-serif;font-si
 .ptitle{font-size:21px;font-weight:700;color:#fff;margin-bottom:3px;}
 .psub{font-family:'DM Mono',monospace;font-size:9px;color:var(--t4);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:22px;}
 .card{background:var(--bg2);border:1px solid var(--b1);border-radius:10px;padding:18px;}
-.ctitle{font-family:var(--fd);font-size:9px;color:var(--t4);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;}
+.ctitle{font-family:'DM Mono',monospace;font-size:9px;color:var(--t4);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;}
@@ -52,7 +52,7 @@ th{font-family:'DM Mono',monospace;font-size:9px;color:var(--t4);letter-spacing:
 td{padding:9px 11px;border-bottom:1px solid rgba(30,30,30,.5);font-size:13px;}
 tr:hover td{background:rgba(255,255,255,.02);}tr:last-child td{border-bottom:none;}
 .tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:600;font-family:'DM Mono',monospace;text-transform:uppercase;}
-.tw{background:rgba(193,57,43,.1);color:var(--green);}.tl{background:rgba(255,69,96,.1);color:var(--red);}.tbe{background:rgba(255,215,64,.1);color:var(--gold);}
+.tw{background:rgba(0,230,118,.1);color:var(--green);}.tl{background:rgba(255,69,96,.1);color:var(--red);}.tbe{background:rgba(255,215,64,.1);color:var(--gold);}
 .tlong{background:rgba(68,138,255,.1);color:var(--blue);}.tshort{background:rgba(255,69,96,.1);color:var(--red);}
 .tmnq{background:rgba(179,136,255,.1);color:var(--purple);}.tmes{background:rgba(68,138,255,.1);color:var(--blue);}.tmgc{background:rgba(255,215,64,.1);color:var(--gold);}
 .btn{border:none;border-radius:6px;font-family:'Inter',sans-serif;font-weight:600;cursor:pointer;transition:all .15s;}
@@ -75,11 +75,11 @@ tr:hover td{background:rgba(255,255,255,.02);}tr:last-child td{border-bottom:non
 .fl{font-family:'DM Mono',monospace;font-size:9px;color:var(--t4);letter-spacing:1px;text-transform:uppercase;}
 .fi,.fs,.fta{background:var(--bg3);border:1px solid var(--b2);border-radius:6px;color:#fff;font-family:'Inter',sans-serif;font-size:13px;padding:7px 10px;outline:none;width:100%;transition:border .15s;}
 .fi:focus,.fs:focus,.fta:focus{border-color:var(--green);}.fta{min-height:65px;resize:vertical;}.fs option{background:var(--bg3);}
-.fsec{font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;padding:10px 0 7px;border-bottom:1px solid var(--b1);margin-bottom:11px;margin-top:4px;}
+.fsec{font-family:'DM Mono',monospace;font-size:9px;color:var(--green);letter-spacing:2px;text-transform:uppercase;padding:10px 0 7px;border-bottom:1px solid var(--b1);margin-bottom:11px;margin-top:4px;}
 .ch200{position:relative;height:200px;}.ch300{position:relative;height:300px;}
 .alert{border-radius:8px;padding:11px 14px;margin-bottom:13px;font-size:13px;line-height:1.5;}
 .ar{background:rgba(255,69,96,.07);border:1px solid rgba(255,69,96,.2);color:var(--red);}
-.ag{background:rgba(193,57,43,.07);border:1px solid rgba(193,57,43,.2);color:var(--green);}
+.ag{background:rgba(0,230,118,.07);border:1px solid rgba(0,230,118,.2);color:var(--green);}
 .ao{background:rgba(255,215,64,.07);border:1px solid rgba(255,215,64,.2);color:var(--gold);}
 .ck{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--b1);cursor:pointer;}
 .ck:last-child{border-bottom:none;}.ckb{width:18px;height:18px;border:2px solid var(--b3);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;margin-top:1px;}
@@ -87,7 +87,7 @@ tr:hover td{background:rgba(255,255,255,.02);}tr:last-child td{border-bottom:non
 .ckt{font-size:13px;color:var(--t2);line-height:1.5;}
 .sess{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;}
 .sc{background:var(--bg2);border:1px solid var(--b1);border-radius:8px;padding:12px;text-align:center;}
-.sc.live{border-color:rgba(193,57,43,.4);background:rgba(193,57,43,.04);}
+.sc.live{border-color:rgba(0,230,118,.4);background:rgba(0,230,118,.04);}
 .scn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
 .sct{font-family:'DM Mono',monospace;font-size:11px;color:var(--t2);}
 .scs{font-size:10px;font-weight:600;margin-top:4px;}.scs.o{color:var(--green);}.scs.c{color:var(--t4);}
@@ -97,7 +97,7 @@ tr:hover td{background:rgba(255,255,255,.02);}tr:last-child td{border-bottom:non
 .pbfl{height:100%;border-radius:3px;background:var(--green);}
 .pval{font-family:'DM Mono',monospace;font-size:10px;color:var(--t2);width:55px;}
 .idrop{border:1px dashed var(--b2);border-radius:8px;padding:18px;text-align:center;cursor:pointer;color:var(--t4);font-size:12px;transition:border .15s;}
-.idrop:hover{border-color:var(--gold);color:var(--green);}
+.idrop:hover{border-color:var(--green);color:var(--green);}
 .iprevs{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px;}
 .iprev{position:relative;width:70px;height:70px;}.iprev img{width:100%;height:100%;object-fit:cover;border-radius:6px;border:1px solid var(--b2);}
 .iprev .idel{position:absolute;top:-5px;right:-5px;background:var(--red);color:#fff;border:none;border-radius:50%;width:16px;height:16px;font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
@@ -109,12 +109,12 @@ tr:hover td{background:rgba(255,255,255,.02);}tr:last-child td{border-bottom:non
 .ps h3{font-size:14px;font-weight:700;color:#fff;margin-bottom:12px;}
 .sr{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid rgba(30,30,30,.5);}
 .sr:last-child{border-bottom:none;}
-.snum{width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.snum{width:26px;height:26px;border-radius:50%;background:var(--green);color:#000;font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
 .snum.r{background:var(--red);}
 .scon h4{font-size:13px;font-weight:600;color:#fff;margin-bottom:3px;}
 .scon p{font-size:12px;color:var(--t3);line-height:1.5;}
 .dodont{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
-.dobox{background:rgba(193,57,43,.04);border:1px solid rgba(193,57,43,.12);border-radius:8px;padding:13px;}
+.dobox{background:rgba(0,230,118,.04);border:1px solid rgba(0,230,118,.12);border-radius:8px;padding:13px;}
 .dontbox{background:rgba(255,69,96,.04);border:1px solid rgba(255,69,96,.12);border-radius:8px;padding:13px;}
 .dobox h4{color:var(--green);font-size:11px;font-weight:700;margin-bottom:8px;text-transform:uppercase;font-family:'DM Mono',monospace;}
 .dontbox h4{color:var(--red);font-size:11px;font-weight:700;margin-bottom:8px;text-transform:uppercase;font-family:'DM Mono',monospace;}
@@ -127,9 +127,9 @@ tr:hover td{background:rgba(255,255,255,.02);}tr:last-child td{border-bottom:non
 .crv{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:#fff;}
 ::-webkit-scrollbar{width:4px;height:4px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px;}
 
-.mentor{background:linear-gradient(135deg,rgba(193,57,43,.05) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(193,57,43,.18);border-radius:10px;padding:18px;margin-bottom:14px;}
+.mentor{background:linear-gradient(135deg,rgba(0,230,118,.05) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(0,230,118,.18);border-radius:10px;padding:18px;margin-bottom:14px;}
 .mentor-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-.mentor-av{width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;}
+.mentor-av{width:36px;height:36px;border-radius:50%;background:var(--green);color:#000;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;}
 .mentor-who{font-size:11px;color:var(--t4);font-family:'DM Mono',monospace;letter-spacing:.5px;}
 .mentor-who span{color:var(--green);}
 .mentor-msg{font-size:14px;color:var(--t1);line-height:1.75;}
@@ -145,7 +145,7 @@ tr:hover td{background:rgba(255,255,255,.02);}tr:last-child td{border-bottom:non
 .emo-wrap{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
 .emo-opt{padding:4px 10px;border-radius:16px;border:1px solid var(--b2);background:var(--bg3);color:var(--t4);font-size:11px;cursor:pointer;transition:all .15s;user-select:none;}
 .emo-opt:hover{border-color:var(--b3);color:var(--t2);}
-.emo-opt.epos.sel{border-color:var(--gold);background:rgba(193,57,43,.1);color:var(--green);}
+.emo-opt.epos.sel{border-color:var(--green);background:rgba(0,230,118,.1);color:var(--green);}
 .emo-opt.eneg.sel{border-color:var(--red);background:rgba(255,69,96,.1);color:var(--red);}
 .emo-opt.eneu.sel{border-color:var(--gold);background:rgba(255,215,64,.1);color:var(--gold);}
 .proj-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
@@ -166,7 +166,7 @@ tr:hover td{background:rgba(255,255,255,.02);}tr:last-child td{border-bottom:non
 .cal-cell.today{border-color:rgba(0,230,118,.35);background:rgba(0,230,118,.04);}
 .cal-cell.has-trades{cursor:pointer;}
 .cal-cell.has-trades:hover{border-color:var(--green);}
-.cal-cell.selected{border-color:var(--gold) !important;box-shadow:0 0 0 1px var(--green);}
+.cal-cell.selected{border-color:var(--green) !important;box-shadow:0 0 0 1px var(--green);}
 .cal-cell.empty{background:transparent;border-color:transparent;cursor:default;}
 .cal-day-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--t4);margin-bottom:5px;}
 .cal-cell.today .cal-day-num{color:var(--green);font-weight:700;}
@@ -578,7 +578,7 @@ body.nav-header .nav-mode-menu{display:none !important;}
   <div class="topbar-right">
     <div class="topbar-pnl" id="tb-pnl" style="color:var(--green)">+$0 <span style="color:var(--t4);font-size:10px">/ $3,000</span></div>
     <button class="settings-btn" onclick="openSettings()" style="padding:6px 11px;font-size:11px">&#9881; Settings</button>
-    <button class="settings-btn" onclick="openModal()" style="padding:6px 11px;font-size:11px;color:var(--green);border-color:rgba(193,57,43,.3)">+ Trade</button>
+    <button class="settings-btn" onclick="openModal()" style="padding:6px 11px;font-size:11px;color:var(--green);border-color:rgba(0,230,118,.3)">+ Trade</button>
     <div style="position:relative">
       <button class="settings-btn" onclick="toggleNavMenu('navModeMenuTopbar')" style="padding:6px 10px;font-size:13px;line-height:1" title="Change layout">&#9776;</button>
       <div class="topbar-dropdown" id="navModeMenuTopbar">
@@ -702,7 +702,7 @@ body.nav-header .nav-mode-menu{display:none !important;}
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px">
     <div><div class="ptitle">Trade Journal</div><div class="psub">Full ICT Log</div></div>
     <div style="display:flex;gap:8px;align-items:center">
-      <button class="settings-btn" onclick="openExportModal()" style="padding:7px 14px;font-size:12px;color:var(--green);border-color:rgba(193,57,43,.3);display:flex;align-items:center;gap:6px">
+      <button class="settings-btn" onclick="openExportModal()" style="padding:7px 14px;font-size:12px;color:var(--green);border-color:rgba(0,230,118,.3);display:flex;align-items:center;gap:6px">
         <span style="font-size:14px">&#8681;</span> Export
       </button>
       <div style="display:flex;background:var(--bg3);border:1px solid var(--b2);border-radius:6px;overflow:hidden">
@@ -831,7 +831,7 @@ body.nav-header .nav-mode-menu{display:none !important;}
       <div style="font-size:11px;color:var(--t4)">Based on your current win rate</div>
     </div>
     <div class="proj-grid" id="proj-grid">
-      <div class="proj-card" style="background:rgba(193,57,43,.03);border-color:rgba(193,57,43,.15)">
+      <div class="proj-card" style="background:rgba(0,230,118,.03);border-color:rgba(0,230,118,.15)">
         <div class="proj-title" style="color:var(--green)">Best Case: Win streak</div>
         <div id="proj-win"></div>
       </div>
@@ -877,7 +877,7 @@ body.nav-header .nav-mode-menu{display:none !important;}
       <div class="ctitle">Daily Loss Meter</div>
       <div style="display:flex;align-items:center;gap:11px;background:var(--bg3);border:1px solid var(--b1);border-radius:7px;padding:11px 14px;margin-bottom:13px">
         <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--t4);text-transform:uppercase;letter-spacing:1px;white-space:nowrap">Today Loss</span>
-        <div style="flex:1;height:6px;background:var(--b1);border-radius:3px;overflow:hidden"><div id="dm-fill" style="height:100%;border-radius:3px;background:var(--red);width:0%;transition:width .3s"></div></div>
+        <div style="flex:1;height:6px;background:var(--b1);border-radius:3px;overflow:hidden"><div id="dm-fill" style="height:100%;border-radius:3px;background:var(--green);width:0%;transition:width .3s"></div></div>
         <span style="font-family:'DM Mono',monospace;font-size:12px" id="dm-val">$0 / $400</span>
       </div>
       <div id="cAlert"></div>
@@ -943,7 +943,7 @@ body.nav-header .nav-mode-menu{display:none !important;}
         <div style="font-size:22px;font-weight:700;color:var(--gold)">$0</div>
         <div style="font-size:11px;color:var(--t4);margin-top:5px">Breakeven day</div>
       </div>
-      <div style="background:rgba(193,57,43,.05);border:1px solid rgba(193,57,43,.15);border-radius:8px;padding:14px;text-align:center">
+      <div style="background:rgba(0,230,118,.05);border:1px solid rgba(0,230,118,.15);border-radius:8px;padding:14px;text-align:center">
         <div style="font-size:11px;color:var(--t4);margin-bottom:5px">Double Win Day</div>
         <div style="font-size:22px;font-weight:700;color:var(--green)">+$1,200</div>
         <div style="font-size:11px;color:var(--t4);margin-top:5px">Best possible outcome</div>
@@ -993,7 +993,7 @@ body.nav-header .nav-mode-menu{display:none !important;}
     </div>
   </div>
 
-  <div class="ps" style="border-left:3px solid var(--green)">
+  <div class="ps" style="border-left:3px solid var(--red)">
     <h3>&#128721; After a Loss &#8212; Exact Protocol</h3>
     <div style="background:rgba(255,69,96,.04);border:1px solid rgba(255,69,96,.12);border-radius:8px;padding:15px">
       <div class="sr" style="padding:7px 0"><div class="snum r">1</div><div class="scon"><h4>Close charts immediately</h4><p>Not in 5 minutes. Right now. Alt+F4 if needed.</p></div></div>
@@ -1477,7 +1477,7 @@ async function renderMentor() {
   if (mentorLoading) return;
   mentorLoading = true;
 
-  tagWrap.innerHTML = '<span class="mentor-tag" style="background:rgba(193,57,43,.06);color:var(--green);animation:pulse 1s infinite">AI THINKING...</span>';
+  tagWrap.innerHTML = '<span class="mentor-tag" style="background:rgba(0,230,118,.06);color:var(--green);animation:pulse 1s infinite">AI THINKING...</span>';
   msgEl.style.color = 'var(--t4)';
   msgEl.style.fontStyle = 'italic';
   msgEl.textContent = 'Reading your trade data...';
@@ -1668,7 +1668,7 @@ function renderD() {
   if (eqC) eqC.destroy();
   eqC = new Chart(document.getElementById('eqChart'), {
     type: 'line',
-    data: { labels: eql, datasets: [{ data: eq, borderColor: 'var(--green)', borderWidth: 2, pointRadius: 3, pointBackgroundColor: 'var(--green)', tension: .3, fill: { target: 'origin', above: 'rgba(193,57,43,.07)', below: 'rgba(255,69,96,.07)' } }] },
+    data: { labels: eql, datasets: [{ data: eq, borderColor: 'var(--green)', borderWidth: 2, pointRadius: 3, pointBackgroundColor: 'var(--green)', tension: .3, fill: { target: 'origin', above: 'rgba(0,230,118,.07)', below: 'rgba(255,69,96,.07)' } }] },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => '$' + c.raw.toLocaleString() } } }, scales: { x: { grid: { color: 'rgba(255,255,255,.03)' }, ticks: { color: '#555', font: { size: 9, family: 'DM Mono' }, maxTicksLimit: 8 } }, y: { grid: { color: 'rgba(255,255,255,.03)' }, ticks: { color: '#555', font: { size: 9, family: 'DM Mono' }, callback: v => '$' + v } } } }
   });
 
@@ -1758,13 +1758,13 @@ function renderA() {
   const sp = sl.map(s => t.filter(x => x.session === s).reduce((a, x) => a + x.pnl, 0));
   if (sessC) sessC.destroy();
   sessC = new Chart(document.getElementById('sessChart'), {
-    type: 'bar', data: { labels: sl, datasets: [{ data: sp, backgroundColor: sp.map(v => v >= 0 ? 'rgba(193,57,43,.7)' : 'rgba(255,69,96,.7)'), borderWidth: 0 }] },
+    type: 'bar', data: { labels: sl, datasets: [{ data: sp, backgroundColor: sp.map(v => v >= 0 ? 'rgba(0,230,118,.7)' : 'rgba(255,69,96,.7)'), borderWidth: 0 }] },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false }, ticks: { color: '#555', font: { size: 10 } } }, y: { grid: { color: 'rgba(255,255,255,.03)' }, ticks: { color: '#555', font: { size: 10 }, callback: v => '$' + v } } } }
   });
 
   if (wlC) wlC.destroy();
   wlC = new Chart(document.getElementById('wlChart'), {
-    type: 'doughnut', data: { labels: ['Win', 'Loss', 'BE'], datasets: [{ data: [w.length, l.length, t.filter(x => x.result === 'BE').length], backgroundColor: ['rgba(193,57,43,.8)', 'rgba(255,69,96,.8)', 'rgba(255,215,64,.8)'], borderWidth: 0 }] },
+    type: 'doughnut', data: { labels: ['Win', 'Loss', 'BE'], datasets: [{ data: [w.length, l.length, t.filter(x => x.result === 'BE').length], backgroundColor: ['rgba(0,230,118,.8)', 'rgba(255,69,96,.8)', 'rgba(255,215,64,.8)'], borderWidth: 0 }] },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#888', font: { size: 11 }, boxWidth: 10 } } } }
   });
 
@@ -3375,7 +3375,7 @@ function renderAll() { renderD(); renderJ(); calcUpdate(); }
   <div style="background:var(--bg2);border:1px solid var(--b2);border-radius:12px;padding:28px;width:100%;max-width:360px">
     <div style="font-size:15px;font-weight:600;color:var(--t1);margin-bottom:20px;text-align:center">Choose a new password</div>
     <div id="reset-error" style="display:none;background:rgba(255,69,96,.1);border:1px solid rgba(255,69,96,.3);border-radius:6px;padding:10px;font-size:12px;color:var(--red);margin-bottom:14px;text-align:center"></div>
-    <div id="reset-success" style="display:none;background:rgba(193,57,43,.1);border:1px solid rgba(193,57,43,.3);border-radius:6px;padding:10px;font-size:12px;color:var(--green);margin-bottom:14px;text-align:center"></div>
+    <div id="reset-success" style="display:none;background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.3);border-radius:6px;padding:10px;font-size:12px;color:var(--green);margin-bottom:14px;text-align:center"></div>
     <label style="font-size:10px;color:var(--t4);font-weight:700;letter-spacing:1px;display:block;margin-bottom:5px">NEW PASSWORD</label>
     <input id="reset-pass" class="fi" type="password" placeholder="min 6 characters" style="margin-bottom:12px;width:100%;box-sizing:border-box">
     <label style="font-size:10px;color:var(--t4);font-weight:700;letter-spacing:1px;display:block;margin-bottom:5px">CONFIRM PASSWORD</label>
