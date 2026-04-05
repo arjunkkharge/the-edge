@@ -1025,7 +1025,7 @@ body.nav-header .nav-mode-menu{display:none !important;}
         <div class="ff"><label class="fl">Result</label><select class="fs" id="f-res"><option>WIN</option><option>LOSS</option><option>BE</option></select></div>
       </div>
       <div class="fg fg4">
-        <div class="ff"><label class="fl">P&amp;L ($)</label><input class="fi" id="f-pnl" type="number" step="any" placeholder="400"></div>
+        <div class="ff"><label class="fl">P&amp;L ($)</label><input class="fi" id="f-pnl" type="number" step="any" placeholder="200"></div>
         <div class="ff"><label class="fl">$ Risk</label><input class="fi" id="f-risk" type="number" step="any" placeholder="100"></div>
         <div class="ff"><label class="fl">R:R Achieved</label><input class="fi" id="f-rr" type="number" step="any" placeholder="2.0"></div>
         <div class="ff"><label class="fl">Trade # Today</label><select class="fs" id="f-tn"><option value="1">1st Trade</option><option value="2">2nd Trade</option><option value="3">3rd Trade</option><option value="4">4th Trade</option><option value="5">5th Trade</option></select></div>
@@ -1782,11 +1782,11 @@ function renderA() {
   // Projections
   const allPnl = trades.reduce((s, t) => s + t.pnl, 0);
   const wr = globalWR;
-  const r1 = cfg.risk1, r2 = cfg.risk2;
-  const winDay = r1 * 2 + r2 * 2; // double win = $1200
+  const r1 = cfg.risk1;
+  const winDay = r1 * 2 * 3; // triple win = $600 (3 trades × $100 risk × 1:2 RR)
   const lossDay = -r1;
   const beDay = 0;
-  const ev = wr * wr * winDay + wr * (1 - wr) * beDay + (1 - wr) * lossDay; // expected daily value
+  const ev = wr * wr * wr * winDay + wr * wr * (1 - wr) * (r1 * 2 * 2) + wr * (1 - wr) * r1 + (1 - wr) * lossDay; // expected daily value
 
   const proj = (days) => {
     const best = allPnl + days * winDay;
@@ -1799,7 +1799,7 @@ function renderA() {
   const p3 = proj(3); const p5 = proj(5); const p10 = proj(10);
 
   const prow = (lbl, val) => `<div class="proj-row"><span class="proj-lbl">${lbl}</span><span class="proj-val ${val >= 0 ? 'pos' : 'neg'}">${val >= 0 ? '+' : ''}$${Math.abs(val).toFixed(0)}</span></div>`;
-  document.getElementById('proj-win').innerHTML = prow('After 3 days (all wins)', p3.best) + prow('After 5 days', proj(5).best) + prow('After 10 days', proj(10).best) + `<div style="font-size:10px;color:var(--t4);margin-top:6px">Assumes double-win every day</div>`;
+  document.getElementById('proj-win').innerHTML = prow('After 3 days (all wins)', p3.best) + prow('After 5 days', proj(5).best) + prow('After 10 days', proj(10).best) + `<div style="font-size:10px;color:var(--t4);margin-top:6px">Assumes triple-win every day</div>`;
   document.getElementById('proj-mixed').innerHTML = prow('Expected 3 days', p3.expected) + prow('Expected 5 days', p5.expected) + prow('Expected 10 days', p10.expected) + `<div style="font-size:10px;color:var(--t4);margin-top:6px">Based on current ${(wr * 100).toFixed(0)}% win rate</div>`;
   document.getElementById('proj-loss').innerHTML = prow('3 straight losses', p3.worst) + prow('5 straight losses', p5.worst) + prow('10 straight losses', p10.worst) + `<div style="font-size:10px;color:var(--t4);margin-top:6px">Worst case (stop-loss hit every day)</div>`;
 
@@ -1807,7 +1807,7 @@ function renderA() {
   const remaining = cfg.target - allPnl;
   const scenarios = [{ wr: 0.40, lbl: '40% WR' }, { wr: 0.50, lbl: '50% WR' }, { wr: 0.60, lbl: '60% WR' }];
   document.getElementById('days-to-target').innerHTML = scenarios.map(s => {
-    const dayEV = s.wr * s.wr * winDay + s.wr * (1 - s.wr) * beDay + (1 - s.wr) * lossDay;
+    const dayEV = s.wr * s.wr * s.wr * winDay + s.wr * s.wr * (1 - s.wr) * (r1 * 2 * 2) + s.wr * (1 - s.wr) * r1 + (1 - s.wr) * lossDay;
     const days = dayEV > 0 ? Math.ceil(remaining / dayEV) : 999;
     return `<div style="background:var(--bg3);border:1px solid var(--b1);border-radius:8px;padding:12px 16px;text-align:center">
       <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--t4);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">${s.lbl}</div>
@@ -1898,10 +1898,10 @@ function saveSettings() {
   cfg = {
     target: parseFloat(document.getElementById('s-target').value) || 3000,
     account: parseFloat(document.getElementById('s-account').value) || 50000,
-    maxday: parseFloat(document.getElementById('s-maxday').value) || 400,
+    maxday: parseFloat(document.getElementById('s-maxday').value) || 100,
     maxdd: parseFloat(document.getElementById('s-maxdd').value) || 2000,
-    risk1: parseFloat(document.getElementById('s-risk1').value) || 200,
-    risk2: parseFloat(document.getElementById('s-risk2').value) || 400,
+    risk1: parseFloat(document.getElementById('s-risk1').value) || 100,
+    risk2: parseFloat(document.getElementById('s-risk2').value) || 100,
   };
   persistCfg();
   sbPushSettings(); // sync settings to cloud
