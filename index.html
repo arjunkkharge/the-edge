@@ -859,7 +859,7 @@ body.nav-header .nav-mode-menu{display:none !important;}
       <div class="ctitle">Position Sizer</div>
       <div class="fg">
         <div class="ff"><label class="fl">Trade # Today</label>
-          <select class="fs" id="c-tn" onchange="calcUpdate()"><option value="1">Trade 1 &#8212; Risk $200</option><option value="2">Trade 2 &#8212; Risk $400</option></select></div>
+          <select class="fs" id="c-tn" onchange="calcUpdate()"><option value="1">Trade 1 &#8212; Risk $100</option><option value="2">Trade 2 &#8212; Risk $100</option><option value="3">Trade 3 &#8212; Risk $100</option></select></div>
         <div class="ff"><label class="fl">Instrument</label>
           <select class="fs" id="c-ins" onchange="calcUpdate()"><option>MNQ</option><option>MES</option><option>MGC</option></select></div>
         <div class="ff"><label class="fl">Entry Price</label><input class="fi" id="c-en" type="number" step="any" placeholder="e.g. 21500" oninput="calcUpdate()"></div>
@@ -878,7 +878,7 @@ body.nav-header .nav-mode-menu{display:none !important;}
       <div style="display:flex;align-items:center;gap:11px;background:var(--bg3);border:1px solid var(--b1);border-radius:7px;padding:11px 14px;margin-bottom:13px">
         <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--t4);text-transform:uppercase;letter-spacing:1px;white-space:nowrap">Today Loss</span>
         <div style="flex:1;height:6px;background:var(--b1);border-radius:3px;overflow:hidden"><div id="dm-fill" style="height:100%;border-radius:3px;background:var(--green);width:0%;transition:width .3s"></div></div>
-        <span style="font-family:'DM Mono',monospace;font-size:12px" id="dm-val">$0 / $400</span>
+        <span style="font-family:'DM Mono',monospace;font-size:12px" id="dm-val">$0 / $100</span>
       </div>
       <div id="cAlert"></div>
       <div class="ctitle" style="margin-top:8px">Instrument Specs</div>
@@ -935,7 +935,7 @@ body.nav-header .nav-mode-menu{display:none !important;}
     <div class="g3" style="margin-bottom:13px">
       <div style="background:rgba(255,69,96,.05);border:1px solid rgba(255,69,96,.15);border-radius:8px;padding:14px;text-align:center">
         <div style="font-size:11px;color:var(--t4);margin-bottom:5px">Loss Day</div>
-        <div style="font-size:22px;font-weight:700;color:var(--red)">&#8722;$200</div>
+        <div style="font-size:22px;font-weight:700;color:var(--red)">&#8722;$100</div>
         <div style="font-size:11px;color:var(--t4);margin-top:5px">Trade 1 loses &#8594; stop for day</div>
       </div>
       <div style="background:rgba(255,215,64,.05);border:1px solid rgba(255,215,64,.15);border-radius:8px;padding:14px;text-align:center">
@@ -944,13 +944,13 @@ body.nav-header .nav-mode-menu{display:none !important;}
         <div style="font-size:11px;color:var(--t4);margin-top:5px">Breakeven day</div>
       </div>
       <div style="background:rgba(0,230,118,.05);border:1px solid rgba(0,230,118,.15);border-radius:8px;padding:14px;text-align:center">
-        <div style="font-size:11px;color:var(--t4);margin-bottom:5px">Double Win Day</div>
-        <div style="font-size:22px;font-weight:700;color:var(--green)">+$1,200</div>
-        <div style="font-size:11px;color:var(--t4);margin-top:5px">Best possible outcome</div>
+        <div style="font-size:11px;color:var(--t4);margin-bottom:5px">Best Day</div>
+        <div style="font-size:22px;font-weight:700;color:var(--green)">+$600</div>
+        <div style="font-size:11px;color:var(--t4);margin-top:5px">3 wins &#8594; best possible outcome</div>
       </div>
     </div>
     <div style="background:var(--bg3);border-radius:8px;padding:13px;font-size:12px;color:var(--t3);line-height:1.7">
-      Trade 1: Risk $200 &#8594; Target $400. If WIN &#8594; take Trade 2: Risk $400 (the profit) &#8594; Target $800. Max 2 trades per day. After any loss, session is over. One bad day costs $200 max. One great day earns $1,200.
+      Trades 1, 2 &amp; 3: Risk $100 each &#8594; Target $200 minimum (1:2 RR, no max cap). Max 3 trades per day. After any loss, session is over &#8212; no exceptions. One bad day costs $100 max. One great day earns $600.
     </div>
   </div>
 
@@ -981,7 +981,7 @@ body.nav-header .nav-mode-menu{display:none !important;}
       </ul></div>
       <div class="dontbox"><h4>Never Do</h4><ul>
         <li>NEVER trade after a loss today</li>
-        <li>NEVER take more than 2 trades/day</li>
+        <li>NEVER take more than 3 trades/day</li>
         <li>NEVER enter outside a killzone</li>
         <li>NEVER enter without a sweep</li>
         <li>NEVER move SL closer to price</li>
@@ -999,7 +999,7 @@ body.nav-header .nav-mode-menu{display:none !important;}
       <div class="sr" style="padding:7px 0"><div class="snum r">1</div><div class="scon"><h4>Close charts immediately</h4><p>Not in 5 minutes. Right now. Alt+F4 if needed.</p></div></div>
       <div class="sr" style="padding:7px 0"><div class="snum r">2</div><div class="scon"><h4>Log the trade honestly</h4><p>Did you follow all rules? Be completely honest. Write it down.</p></div></div>
       <div class="sr" style="padding:7px 0"><div class="snum r">3</div><div class="scon"><h4>Step away for 30 minutes</h4><p>Walk, drink water, breathe. Fully reset your state.</p></div></div>
-      <div class="sr" style="padding:7px 0;border-bottom:none"><div class="snum r">4</div><div class="scon"><h4>Do not open charts again that session</h4><p>One &#8722;$200 loss is nothing. A revenge spiral turning it into &#8722;$800 ends your challenge. One good double-win day ($1,200) wipes out 6 loss days. Protect the account above all else.</p></div></div>
+      <div class="sr" style="padding:7px 0;border-bottom:none"><div class="snum r">4</div><div class="scon"><h4>Do not open charts again that session</h4><p>One &#8722;$100 loss is nothing. A revenge spiral turning it into &#8722;$300 ends your challenge. One good triple-win day ($600) wipes out 6 loss days. Protect the account above all else.</p></div></div>
     </div>
   </div>
 
@@ -1026,7 +1026,7 @@ body.nav-header .nav-mode-menu{display:none !important;}
       </div>
       <div class="fg fg4">
         <div class="ff"><label class="fl">P&amp;L ($)</label><input class="fi" id="f-pnl" type="number" step="any" placeholder="400"></div>
-        <div class="ff"><label class="fl">$ Risk</label><input class="fi" id="f-risk" type="number" step="any" placeholder="200 or 400"></div>
+        <div class="ff"><label class="fl">$ Risk</label><input class="fi" id="f-risk" type="number" step="any" placeholder="100"></div>
         <div class="ff"><label class="fl">R:R Achieved</label><input class="fi" id="f-rr" type="number" step="any" placeholder="2.0"></div>
         <div class="ff"><label class="fl">Trade # Today</label><select class="fs" id="f-tn"><option value="1">1st Trade</option><option value="2">2nd Trade</option><option value="3">3rd Trade</option><option value="4">4th Trade</option><option value="5">5th Trade</option></select></div>
       </div>
@@ -1187,10 +1187,10 @@ body.nav-header .nav-mode-menu{display:none !important;}
       <div class="fg">
         <div class="ff"><label class="fl">Profit Target ($)</label><input class="fi" id="s-target" type="number" placeholder="3000"></div>
         <div class="ff"><label class="fl">Account Size ($)</label><input class="fi" id="s-account" type="number" placeholder="50000"></div>
-        <div class="ff"><label class="fl">Daily Loss Limit ($)</label><input class="fi" id="s-maxday" type="number" placeholder="400"></div>
+        <div class="ff"><label class="fl">Daily Loss Limit ($)</label><input class="fi" id="s-maxday" type="number" placeholder="100"></div>
         <div class="ff"><label class="fl">Max Total DD ($)</label><input class="fi" id="s-maxdd" type="number" placeholder="2000"></div>
-        <div class="ff"><label class="fl">Trade 1 Risk ($)</label><input class="fi" id="s-risk1" type="number" placeholder="200"></div>
-        <div class="ff"><label class="fl">Trade 2 Risk ($)</label><input class="fi" id="s-risk2" type="number" placeholder="400"></div>
+        <div class="ff"><label class="fl">Risk Per Trade ($)</label><input class="fi" id="s-risk1" type="number" placeholder="100"></div>
+        <div class="ff"><label class="fl">Risk Per Trade 2 ($)</label><input class="fi" id="s-risk2" type="number" placeholder="100"></div>
       </div>
       <div class="fsec">Trailing EOD Drawdown</div>
       <div style="background:var(--bg3);border-radius:8px;padding:12px;font-size:12px;color:var(--t3);line-height:1.7;margin-bottom:12px">
@@ -1254,7 +1254,7 @@ let eqC, sessC, wlC;
 const today = new Date().toISOString().slice(0, 10);
 
 // Settings (custom targets)
-const DEFAULT_SETTINGS = { target: 3000, account: 50000, maxday: 400, maxdd: 2000, risk1: 200, risk2: 400 };
+const DEFAULT_SETTINGS = { target: 3000, account: 50000, maxday: 100, maxdd: 2000, risk1: 100, risk2: 100 };
 let cfg = { ...DEFAULT_SETTINGS, ...JSON.parse(localStorage.getItem('lt_cfg') || '{}') };
 
 // EOD trailing DD
@@ -1274,7 +1274,7 @@ const CK_ITEMS = [
   'Stop loss placed at logical invalidation (below/above the sweep — NOT random)',
   'Take profit is at opposing liquidity — minimum 1:2 R:R confirmed before entry',
   'I have NOT taken a loss already today (if yes: CLOSE CHARTS, DO NOT TRADE)',
-  'I have NOT taken 2 trades already today (if yes: SESSION IS OVER)',
+  'I have NOT taken 3 trades already today (if yes: SESSION IS OVER)',
 ];
 let cks = [];
 try { cks = JSON.parse(localStorage.getItem('lt_ck3') || '[]'); } catch(e) {}
@@ -1825,11 +1825,12 @@ function calcUpdate() {
   const ins = document.getElementById('c-ins').value;
   const en = parseFloat(document.getElementById('c-en').value);
   const sl = parseFloat(document.getElementById('c-sl2').value);
-  const risk = tn === 1 ? cfg.risk1 : cfg.risk2;
+  const risk = cfg.risk1; // flat $100 for all trades
   const pv = PV[ins] || 2;
   // Update dropdown labels
   document.getElementById('c-tn').options[0].text = `Trade 1 \u2014 Risk $${cfg.risk1}`;
-  document.getElementById('c-tn').options[1].text = `Trade 2 \u2014 Risk $${cfg.risk2} (after win)`;
+  document.getElementById('c-tn').options[1].text = `Trade 2 \u2014 Risk $${cfg.risk1}`;
+  document.getElementById('c-tn').options[2].text = `Trade 3 \u2014 Risk $${cfg.risk1}`;
   document.getElementById('cr-risk').textContent = '$' + risk;
   if (en && sl) {
     const dist = Math.abs(en - sl);
@@ -3205,11 +3206,11 @@ function getTradeLimitState() {
   const todayTrades = trades.filter(t => t.date === today);
   const completed = todayTrades.filter(t => t.result === 'WIN' || t.result === 'LOSS').length;
   const bes = todayTrades.filter(t => t.result === 'BE').length;
-  // Option B: only WIN/LOSS count toward the 2-trade limit.
+  // Only WIN/LOSS count toward the 3-trade limit.
   // BEs are free — they give you a re-entry without consuming a slot.
-  const canTrade = completed < 2;
+  const canTrade = completed < 3;
   const isLocked = !canTrade;
-  const remaining = Math.max(0, 2 - completed);
+  const remaining = Math.max(0, 3 - completed);
 
   return {
     todayCount: todayTrades.length,
@@ -3219,14 +3220,16 @@ function getTradeLimitState() {
     isLocked,
     remaining,
     statusMsg: isLocked
-      ? `Session locked — 2 trades completed today${bes > 0 ? ' (+' + bes + ' BE scratch' + (bes > 1 ? 'es' : '') + ')' : ''}. Close the charts.`
+      ? `Session locked — 3 trades completed today${bes > 0 ? ' (+' + bes + ' BE scratch' + (bes > 1 ? 'es' : '') + ')' : ''}. Close the charts.`
       : completed === 0 && bes === 0
         ? null
         : bes > 0 && completed === 0
           ? `${bes} BE scratch${bes > 1 ? 'es' : ''} — re-entry open. No completed trades yet.`
           : completed === 1
-            ? `1 of 2 trades done.${bes > 0 ? ' (' + bes + ' BE scratch' + (bes > 1 ? 'es' : '') + ')' : ''} 1 remaining.`
-            : null
+            ? `1 of 3 trades done.${bes > 0 ? ' (' + bes + ' BE scratch' + (bes > 1 ? 'es' : '') + ')' : ''} 2 remaining.`
+            : completed === 2
+              ? `2 of 3 trades done.${bes > 0 ? ' (' + bes + ' BE scratch' + (bes > 1 ? 'es' : '') + ')' : ''} 1 remaining.`
+              : null
   };
 }
 
@@ -3246,7 +3249,7 @@ function checkTradeLimit() {
         <b style="color:var(--t2)">How re-entries work:</b><br>
         WIN or LOSS = 1 trade slot used<br>
         BE = free, but unlocks 1 re-entry<br>
-        Max 2 completed trades per session
+        Max 3 completed trades per session
       </div>
     </div>`;
 
