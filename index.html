@@ -3235,32 +3235,8 @@ function getTradeLimitState() {
 
 function checkTradeLimit() {
   // Called when opening modal for NEW trade (not edit)
-  const state = getTradeLimitState();
-  if (!state.isLocked) return true; // allowed
-
-  // Show locked modal instead
-  const msg = state.statusMsg;
-  const lockHtml = `
-    <div style="text-align:center;padding:20px 0">
-      <div style="font-size:32px;margin-bottom:12px">🔒</div>
-      <div style="font-size:16px;font-weight:700;color:var(--t1);margin-bottom:8px">Session Over</div>
-      <div style="font-size:13px;color:var(--t3);margin-bottom:20px;line-height:1.6">${msg}<br><br>Close the charts. You agreed to this rule.</div>
-      <div style="font-size:11px;color:var(--t4);background:var(--bg3);border-radius:8px;padding:12px;line-height:1.7">
-        <b style="color:var(--t2)">How re-entries work:</b><br>
-        WIN or LOSS = 1 trade slot used<br>
-        BE = free, but unlocks 1 re-entry<br>
-        Max 3 completed trades per session
-      </div>
-    </div>`;
-
-  // Temporarily show modal with lock message
-  document.getElementById('mttitle').textContent = 'Trade Limit Reached';
-  document.getElementById('mb').innerHTML = lockHtml;
-  // Hide save button
-  const saveBtn = document.querySelector('#tov .btn.bg');
-  if (saveBtn) saveBtn.style.display = 'none';
-  document.getElementById('tov').classList.add('on');
-  return false; // blocked
+  // Warning only — no hard block. Trade can still be logged.
+  return true;
 }
 
 // ══════════════════════════════════════════════════════
