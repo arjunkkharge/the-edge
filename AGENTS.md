@@ -157,6 +157,7 @@ Fonts: `'Inter', sans-serif` (body) + `'DM Mono', monospace` (labels/values)
 | 2026-04-05 | Risk model updated: $200/$400 scaling → flat $100/trade, 3 trades/day | Claude |
 | 2026-04-05 | Analytics EV formula updated for 3-trade sequential model | Claude |
 | 2026-04-05 | All UI references (plan page, calculator, checklist, alerts) updated | Claude |
+| 2026-04-07 | Removed hard trade limit block — checkTradeLimit() is warning only, no modal lock | Claude |
 
 ---
 
